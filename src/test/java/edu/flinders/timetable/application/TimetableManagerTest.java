@@ -15,22 +15,23 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TimetableManagerTest {
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.01 - generate timetable delegates")
-    void tm101_generateTimetable() {
+    @Tag("kang0201")
+    @Tag("Critical")
+    @DisplayName("TM1.01 - generate timetable delegates to timetable service")
+    void tm101GenerateTimetableDelegates() {
 
         TimetableSettings settings = new TimetableSettings();
 
-        // FAKE SERVICE (replace constructor args with whatever your project uses)
-        TimetableService service = new TimetableService(
-                null,
-                null
-        ) {
+        TimetableService service = new TimetableService(null, null) {
             @Override
             public TimetableGenerationResult generateTimetable(TimetableSettings s) {
                 assertSame(settings, s);
@@ -51,9 +52,10 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.02 - browse timetables")
-    void tm102_browseTimetables() {
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("TM1.02 - browse timetables returns the list from service")
+    void tm102BrowseTimetables() {
 
         List<Timetable> list = List.of(new Timetable(null));
 
@@ -77,9 +79,10 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.03 - view timetable optional")
-    void tm103_viewTimetable() {
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("TM1.03 - view timetable returns optional from service")
+    void tm103ViewTimetableReturnsOptional() {
 
         Timetable t = new Timetable(null);
 
@@ -103,20 +106,16 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.04 - swap flow")
-    void tm104_swapFlow() {
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("TM1.04 - prepare and apply swap delegates correctly")
+    void tm104PrepareAndApplySwapDelegates() {
 
         PendingSwapResult swap = new PendingSwapResult(
-                true,          // canApply
-                false,         // requiresConfirmation
-                null,          // proposedTimetable
-                "",            // message
-                List.of()      // warnings
+                true, false, null, "", List.of()
         );
 
         TimetableService service = new TimetableService(null, null) {
-
             @Override
             public PendingSwapResult prepareSwap(String a, String b, String c) {
                 assertEquals("t1", a);
@@ -144,9 +143,10 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.05 - delete timetable")
-    void tm105_deleteTimetable() {
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("TM1.05 - delete timetable returns correct boolean from service")
+    void tm105DeleteTimetableReturnsBooleanFromService() {
 
         TimetableService service = new TimetableService(null, null) {
             @Override
@@ -169,9 +169,10 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.06 - export timetable")
-    void tm106_exportTimetable() {
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("TM1.06 - export timetable delegates to export service")
+    void tm106ExportTimetableDelegates() {
 
         Path out = Paths.get("out.csv");
         Timetable timetable = new Timetable(null);
@@ -189,5 +190,25 @@ class TimetableManagerTest {
         TimetableManager manager = new TimetableManager(service, exportService);
 
         assertEquals(out, manager.exportTimetable(timetable, out));
+    }
+
+    @Test
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("TM1.07 - getLastSettings delegates to timetable service")
+    void tm107GetLastSettingsDelegates() {
+
+        TimetableSettings expected = new TimetableSettings();
+
+        TimetableService service = new TimetableService(null, null) {
+            @Override
+            public TimetableSettings getLastSettings() {
+                return expected;
+            }
+        };
+
+        TimetableManager manager = new TimetableManager(service, new ExportService(null));
+
+        assertSame(expected, manager.getLastSettings());
     }
 }

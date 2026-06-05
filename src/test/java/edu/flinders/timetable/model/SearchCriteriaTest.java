@@ -38,7 +38,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("SC5.01 - Empty search criteria matches class")
     void sc501EmptySearchCriteriaMatchesClass() {
@@ -50,7 +50,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("SC5.02 - Topic code search is case insensitive")
     void sc502TopicCodeSearchIsCaseInsensitive() {
@@ -63,7 +63,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("SC5.03 - Multiple search criteria use AND logic")
     void sc503MultipleSearchCriteriaUseAndLogic() {
@@ -78,7 +78,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("SC5.04 - Search criteria rejects mismatched semester")
     void sc504SearchCriteriaRejectsMismatchedSemester() {
@@ -92,7 +92,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("SC5.05 - All search fields can match")
     void sc505AllSearchFieldsCanMatch() {
@@ -119,7 +119,7 @@ class SearchCriteriaTest {
     }
 
     @Test
-    @Tag("hone0338")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("SC5.07 - Getters and setters work")
     void sc507GettersAndSettersWork() {

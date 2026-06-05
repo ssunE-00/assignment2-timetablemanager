@@ -48,7 +48,7 @@ class FileExporterTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("EX3.01 - Export timetable creates CSV file")
     void ex301ExportTimetableCreatesCsvFile() throws Exception {
@@ -74,7 +74,7 @@ class FileExporterTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("EX3.02 - Export quotes fields that contain commas")
     void ex302ExportQuotesFieldsThatContainCommas() throws Exception {

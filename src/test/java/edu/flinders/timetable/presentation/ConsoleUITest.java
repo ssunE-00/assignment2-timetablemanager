@@ -3,21 +3,34 @@ package edu.flinders.timetable.presentation;
 import edu.flinders.timetable.application.ClassManager;
 import edu.flinders.timetable.application.ImportManager;
 import edu.flinders.timetable.application.TimetableManager;
+import edu.flinders.timetable.data.CsvFormatException;
 import edu.flinders.timetable.data.CsvParser;
 import edu.flinders.timetable.data.DataRepository;
-import edu.flinders.timetable.data.CsvFormatException;
-import edu.flinders.timetable.model.*;
-import edu.flinders.timetable.result.*;
+import edu.flinders.timetable.model.ClassGroup;
+import edu.flinders.timetable.model.ClassRecord;
+import edu.flinders.timetable.model.SearchCriteria;
+import edu.flinders.timetable.model.Timetable;
+import edu.flinders.timetable.model.TimetableSettings;
+import edu.flinders.timetable.result.ImportResult;
+import edu.flinders.timetable.result.PendingSwapResult;
+import edu.flinders.timetable.result.ScheduleWarning;
+import edu.flinders.timetable.result.TimetableGenerationResult;
+import edu.flinders.timetable.service.ExportService;
 import edu.flinders.timetable.service.TimetableService;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 class ConsoleUITest {
 
     private void setInput(String data) {
@@ -26,10 +39,10 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI1 - run basic menu flow safely")
-    void ui_basic_flow() {
-
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("UI1 - Basic menu flow runs without error")
+    void ui1BasicMenuFlow() {
         ImportManager importManager = new ImportManager(
                 new CsvParser() {
                     @Override
@@ -62,15 +75,9 @@ class ConsoleUITest {
                                 true,
                                 new Timetable("test", new ArrayList<>()),
                                 "ok",
-                                List.of(new ScheduleWarning(
-                                        ScheduleWarning.Type.TIME_CLASH,
-                                        null,
-                                        null,
-                                        "Overlap warning"
-                                ))
+                                List.of(new ScheduleWarning(ScheduleWarning.Type.TIME_CLASH, null, null, "Overlap warning"))
                         );
                     }
-
                     @Override public List<Timetable> browseTimetables() { return List.of(); }
                     @Override public Optional<Timetable> viewTimetable(String name) { return Optional.of(new Timetable("test")); }
                     @Override public PendingSwapResult prepareSwap(String a, String b, String c) {
@@ -80,7 +87,7 @@ class ConsoleUITest {
                     @Override public boolean deleteTimetable(String name) { return true; }
                     @Override public TimetableSettings getLastSettings() { return new TimetableSettings(); }
                 },
-                new edu.flinders.timetable.service.ExportService(null) {
+                new ExportService(null) {
                     @Override
                     public Path exportTimetable(Timetable timetable, Path outputPath) {
                         return outputPath;
@@ -88,33 +95,24 @@ class ConsoleUITest {
                 }
         );
 
-        setInput(
-                "1\n" +
-                        "dummy.csv\n" +
-                        "8\n" +
-                        "9\n" +
-                        "test\n" +
-                        "0\n"
-        );
-
+        setInput("1\ndummy.csv\n8\n9\ntest\n0\n");
         new ConsoleUI(importManager, classManager, timetableManager).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI2 - invalid menu option is handled")
-    void ui_invalid_menu_option() {
-
+    @Tag("kang0201")
+    @Tag("Core")
+    @DisplayName("UI2 - Invalid menu option is handled gracefully")
+    void ui2InvalidMenuOptionHandled() {
         setInput("999\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI3 - CSV import failure path (exception handling)")
-    void ui_import_failure() {
-
+    @Tag("kang0201")
+    @Tag("Critical")
+    @DisplayName("UI3 - CSV import failure is reported without crashing")
+    void ui3CsvImportFailureHandled() {
         ImportManager importManager = new ImportManager(
                 new CsvParser() {
                     @Override
@@ -131,57 +129,51 @@ class ConsoleUITest {
         );
 
         setInput("1\nfile.csv\n0\n");
-
         new ConsoleUI(importManager, dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI4 - browse and view empty class list")
-    void ui_empty_class_views() {
-
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("UI4 - Browse and view empty class list shows no records message")
+    void ui4EmptyClassViews() {
         setInput("2\n3\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI5 - browse empty timetables")
-    void ui_empty_timetables() {
-
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("UI5 - Browse timetables with empty list shows no timetables message")
+    void ui5EmptyTimetables() {
         setInput("8\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI6 - view missing timetable")
-    void ui_view_missing_timetable() {
-
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("UI6 - View missing timetable shows not found message")
+    void ui6ViewMissingTimetable() {
         setInput("9\nunknown\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI7 - export missing timetable")
-    void ui_export_missing_timetable() {
-
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("UI7 - Export missing timetable shows not found message")
+    void ui7ExportMissingTimetable() {
         setInput("12\nmissing\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI8 - delete timetable cancelled by user")
-    void ui_delete_cancelled() {
-
+    @Tag("kang0201")
+    @Tag("Additional")
+    @DisplayName("UI8 - Delete timetable cancelled by user does not delete")
+    void ui8DeleteTimetableCancelled() {
         setInput("11\ntest\nn\n0\n");
-
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
@@ -224,7 +216,7 @@ class ConsoleUITest {
                     @Override public boolean deleteTimetable(String name) { return false; }
                     @Override public TimetableSettings getLastSettings() { return new TimetableSettings(); }
                 },
-                new edu.flinders.timetable.service.ExportService(null) {
+                new ExportService(null) {
                     @Override public Path exportTimetable(Timetable timetable, Path outputPath) {
                         return outputPath;
                     }
