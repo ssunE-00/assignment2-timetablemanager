@@ -41,7 +41,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("CR4.01 - Import key ignores time and location")
     void cr401ImportKeyIgnoresTimeAndLocation() {
@@ -56,7 +56,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("CR4.02 - Group key ignores date day time and location")
     void cr402GroupKeyIgnoresDateDayTimeAndLocation() {
@@ -74,7 +74,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("CR4.03 - Copy creates separate class record")
     void cr403CopyCreatesSeparateClassRecord() {
@@ -96,7 +96,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("CR4.04 - Lecture class is detected")
     void cr404LectureClassIsDetected() {
@@ -108,7 +108,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("CR4.05 - Display line contains important class details")
     void cr405DisplayLineContainsImportantClassDetails() {
@@ -128,7 +128,7 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("CR4.06 - Getters setters choice key equals hashcode and tostring")
     void cr406RemainingCoverage() {

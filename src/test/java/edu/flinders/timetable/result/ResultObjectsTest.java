@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ResultObjectsTest {
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("RO9.01 - Import result records counts and errors")
     void ro901ImportResultRecordsCountsAndErrors() {
@@ -41,7 +41,7 @@ class ResultObjectsTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("RO9.02 - Timetable generation failure stores message")
     void ro902TimetableGenerationFailureStoresMessage() {
@@ -57,7 +57,7 @@ class ResultObjectsTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("RO9.03 - Timetable generation success stores timetable")
     void ro903TimetableGenerationSuccessStoresTimetable() {

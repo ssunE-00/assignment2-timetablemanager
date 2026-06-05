@@ -30,7 +30,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.01 - Import classes from a .csv file")
     void tv101ImportClassesFromCsvFile() {
@@ -44,7 +44,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.02 - Parse location that contains a comma")
     void tv102ParseLocationThatContainsAComma() {
@@ -65,7 +65,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("TV1.03 - Parse topic and availability fields")
     void tv103ParseTopicAndAvailabilityFields() {
@@ -87,7 +87,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("TV1.04 - Parse date day and time fields")
     void tv104ParseDateDayAndTimeFields() {
@@ -108,7 +108,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.05 - Reject CSV without a data row")
     void tv105RejectCsvWithoutADataRow() {
@@ -120,7 +120,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.06 - Reject CSV with wrong header")
     void tv106RejectCsvWithWrongHeader() {
@@ -132,7 +132,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.07 - Reject class instance zero")
     void tv107RejectClassInstanceZero() {
@@ -144,7 +144,7 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("TV1.08 - Reject time range where start is after end")
     void tv108RejectTimeRangeWhereStartIsAfterEnd() {

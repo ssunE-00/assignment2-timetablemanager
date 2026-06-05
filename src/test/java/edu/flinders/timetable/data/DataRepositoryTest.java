@@ -53,7 +53,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("DR2.01 - Import new class record increases new count")
     void dr201ImportNewClassRecordIncreasesNewCount() {
@@ -72,7 +72,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Critical")
     @DisplayName("DR2.02 - Import duplicate updates time and location")
     void dr202ImportDuplicateUpdatesTimeAndLocation() {
@@ -101,7 +101,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("DR2.03 - Find class by import key returns class")
     void dr203FindClassByImportKeyReturnsClass() {
@@ -114,7 +114,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("DR2.04 - Replace existing class record")
     void dr204ReplaceExistingClassRecord() {
@@ -137,7 +137,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("DR2.05 - Delete existing class record")
     void dr205DeleteExistingClassRecord() {
@@ -156,7 +156,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Additional")
     @DisplayName("DR2.06 - Delete missing class record returns false")
     void dr206DeleteMissingClassRecordReturnsFalse() {
@@ -168,7 +168,7 @@ class DataRepositoryTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("kang0201")
     @Tag("Core")
     @DisplayName("DR2.07 - Save find and delete timetable")
     void dr207SaveFindAndDeleteTimetable() {

@@ -40,7 +40,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("kang0201")
+    @Tag("Critical")
     @DisplayName("IM1.01 - importCsv processes records successfully")
     void im101_importCsvProcessesRecordsSuccessfully() {
 
@@ -70,7 +71,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("kang0201")
+    @Tag("Core")
     @DisplayName("IM1.02 - importCsv handles empty CSV results")
     void im102_importCsvHandlesEmptyCsvResults() {
 
@@ -100,7 +102,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("kang0201")
+    @Tag("Additional")
     @DisplayName("IM1.03 - constructor wiring smoke test")
     void im103_constructorWorks() {
 
